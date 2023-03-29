@@ -12,12 +12,15 @@ type CommentProps = {
 export default function Comment({ comment, onDelete }: CommentProps) {
   const { id, userId, text, createdAt } = comment;
   return (
-    <li>
+    <li className='w-full flex mb-2'>
       <Avatar />
-      <div>
-        <div>
+      <div className='grow ml-2'>
+        <div className='flex items-center'>
           <CommentView userId={userId} text={text} />
-          <button onClick={() => onDelete(id)}>
+          <button
+            className='ml-2 text-gray-500 transition-all hover:text-red-500'
+            onClick={() => onDelete(id)}
+          >
             <BsTrashFill />
           </button>
         </div>

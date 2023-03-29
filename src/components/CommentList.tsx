@@ -35,7 +35,7 @@ export default function CommentList() {
     setComments((comments) => comments.filter((comment) => comment.id !== id));
 
   return (
-    <section>
+    <section className='px-4'>
       <ul>
         {comments.map((comment) => (
           <Comment key={comment.id} comment={comment} onDelete={handleDelete} />

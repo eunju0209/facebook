@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react';
+import Avatar from './Avatar';
 import { CommentType } from './CommentList';
 
 type AddCommentProps = {
@@ -26,14 +27,23 @@ export default function AddComment({ onAdd }: AddCommentProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type='text'
-        placeholder='댓글을 입력하세요...'
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
-      <button type='submit'>Add</button>
-    </form>
+    <div className='flex items-center'>
+      <Avatar />
+      <form className='grow flex ml-2' onSubmit={handleSubmit}>
+        <input
+          type='text'
+          placeholder='댓글을 입력하세요...'
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          className='outline-none grow bg-slate-100 py-1.5 px-3 rounded-l-full'
+        />
+        <button
+          type='submit'
+          className='w-16 bg-blue-500 text-white rounded-r-full'
+        >
+          Add
+        </button>
+      </form>
+    </div>
   );
 }

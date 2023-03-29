@@ -4,10 +4,14 @@ type CommentButtonsProps = {
 
 export default function CommentButtons({ createdAt }: CommentButtonsProps) {
   return (
-    <div>
-      <button>좋아요</button>
-      <button>답글 달기</button>
-      <span>{createdAt}</span>
+    <div className='flex items-center gap-3 pl-3 mt-0.5'>
+      <button className='text-xs font-semibold text-gray-500 hover:underline'>
+        좋아요
+      </button>
+      <button className='text-xs font-semibold text-gray-500 hover:underline'>
+        답글 달기
+      </button>
+      <span className='text-xs text-gray-500'>{createdAt}</span>
     </div>
   );
 }

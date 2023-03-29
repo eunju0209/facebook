@@ -1,7 +1,11 @@
 export default function Avatar() {
   return (
     <figure>
-      <img src='./images/bori.jpg' alt='avatar' />
+      <img
+        className='w-9 h-9 rounded-full'
+        src='./images/bori.jpg'
+        alt='avatar'
+      />
     </figure>
   );
 }
