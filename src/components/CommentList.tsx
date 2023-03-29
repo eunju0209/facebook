@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AddComment from './AddComment';
 import Comment from './Comment';
 
 export type CommentType = {
@@ -19,7 +20,7 @@ export default function CommentList() {
       createdAt: Date.now(),
     },
     {
-      id: 1,
+      id: 2,
       userId: 'bori',
       text: '반갑습니다.',
       like: false,
@@ -27,11 +28,17 @@ export default function CommentList() {
     },
   ]);
 
+  const handleAdd = (comment: CommentType) =>
+    setComments((comments) => [...comments, comment]);
+
   return (
-    <ul>
-      {comments.map((comment) => (
-        <Comment key={comment.id} comment={comment} />
-      ))}
-    </ul>
+    <section>
+      <ul>
+        {comments.map((comment) => (
+          <Comment key={comment.id} comment={comment} />
+        ))}
+      </ul>
+      <AddComment onAdd={handleAdd} />
+    </section>
   );
 }
