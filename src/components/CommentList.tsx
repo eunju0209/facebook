@@ -31,11 +31,14 @@ export default function CommentList() {
   const handleAdd = (comment: CommentType) =>
     setComments((comments) => [...comments, comment]);
 
+  const handleDelete = (id: number) =>
+    setComments((comments) => comments.filter((comment) => comment.id !== id));
+
   return (
     <section>
       <ul>
         {comments.map((comment) => (
-          <Comment key={comment.id} comment={comment} />
+          <Comment key={comment.id} comment={comment} onDelete={handleDelete} />
         ))}
       </ul>
       <AddComment onAdd={handleAdd} />
