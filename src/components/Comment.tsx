@@ -7,10 +7,11 @@ import CommentButtons from './CommentButtons';
 type CommentProps = {
   comment: CommentType;
   onDelete: (id: number) => void;
+  onLike: (id: number) => void;
 };
 
-export default function Comment({ comment, onDelete }: CommentProps) {
-  const { id, userId, text, createdAt } = comment;
+export default function Comment({ comment, onDelete, onLike }: CommentProps) {
+  const { id, userId, text, createdAt, like } = comment;
   return (
     <li className='w-full flex mb-2'>
       <Avatar />
@@ -24,7 +25,12 @@ export default function Comment({ comment, onDelete }: CommentProps) {
             <BsTrashFill />
           </button>
         </div>
-        <CommentButtons createdAt={createdAt} />
+        <CommentButtons
+          id={id}
+          createdAt={createdAt}
+          like={like}
+          onLike={onLike}
+        />
       </div>
     </li>
   );
