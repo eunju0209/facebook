@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddComment from './AddComment';
 import Comment from './Comment';
 
@@ -11,23 +11,7 @@ export type CommentType = {
 };
 
 export default function CommentList() {
-  const [comments, setComments] = useState([
-    {
-      id: 1,
-      userId: 'bori',
-      text: '안녕하세요.',
-      like: false,
-      createdAt: Date.now(),
-    },
-    {
-      id: 2,
-      userId: 'bori',
-      text: '반갑습니다.',
-      like: false,
-      createdAt: Date.now(),
-      subComments: [],
-    },
-  ]);
+  const [comments, setComments] = useState(readCommentsFromLocalStorage());
 
   const handleAdd = (comment: CommentType) =>
     setComments((comments) => [...comments, comment]);
@@ -41,6 +25,10 @@ export default function CommentList() {
         comment.id === id ? { ...comment, like: !comment.like } : comment
       )
     );
+
+  useEffect(() => {
+    localStorage.setItem('comments', JSON.stringify(comments));
+  }, [comments]);
 
   return (
     <section className='px-4'>
@@ -57,4 +45,9 @@ export default function CommentList() {
       <AddComment onAdd={handleAdd} />
     </section>
   );
+}
+
+function readCommentsFromLocalStorage(): CommentType[] {
+  const comments = localStorage.getItem('comments');
+  return comments ? JSON.parse(comments) : [];
 }

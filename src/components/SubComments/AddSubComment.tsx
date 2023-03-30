@@ -40,6 +40,7 @@ export default function AddSubComment({
           value={text}
           onChange={(e) => setText(e.target.value)}
           className='outline-none grow bg-slate-100 py-1.5 px-3 rounded-l-full'
+          autoFocus
         />
         <button
           type='submit'

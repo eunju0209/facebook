@@ -21,7 +21,6 @@ export default function AddComment({ onAdd }: AddCommentProps) {
       text: trimmed,
       like: false,
       createdAt: Date.now(),
-      subComments: [],
     };
     onAdd(newComment);
     setText('');
