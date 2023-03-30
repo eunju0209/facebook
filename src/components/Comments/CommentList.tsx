@@ -25,6 +25,7 @@ export default function CommentList() {
       text: '반갑습니다.',
       like: false,
       createdAt: Date.now(),
+      subComments: [],
     },
   ]);
 

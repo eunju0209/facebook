@@ -1,14 +1,17 @@
 import { FormEvent, useState } from 'react';
-import Avatar from './Avatar';
-import { CommentType } from './CommentList';
+import { SubCommentType } from '../Comments/Comment';
+import Avatar from '../ui/Avatar';
 
-type AddCommentProps = {
-  onAdd: (comment: CommentType) => void;
+type AddSubCommentProps = {
+  commentId: number;
+  onAdd: (comment: SubCommentType) => void;
 };
 
-export default function AddComment({ onAdd }: AddCommentProps) {
+export default function AddSubComment({
+  commentId,
+  onAdd,
+}: AddSubCommentProps) {
   const [text, setText] = useState('');
-
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
@@ -16,6 +19,7 @@ export default function AddComment({ onAdd }: AddCommentProps) {
     if (trimmed.length === 0) return setText('');
 
     const newComment = {
+      commentId,
       id: Date.now(),
       userId: 'bori',
       text: trimmed,
@@ -32,7 +36,7 @@ export default function AddComment({ onAdd }: AddCommentProps) {
       <form className='grow flex ml-2' onSubmit={handleSubmit}>
         <input
           type='text'
-          placeholder='댓글을 입력하세요...'
+          placeholder='답글을 입력하세요...'
           value={text}
           onChange={(e) => setText(e.target.value)}
           className='outline-none grow bg-slate-100 py-1.5 px-3 rounded-l-full'

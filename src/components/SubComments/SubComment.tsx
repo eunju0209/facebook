@@ -1,17 +1,16 @@
-import { CommentType } from './CommentList';
+import CommentView from '../Comments/CommentView';
+import Avatar from '../ui/Avatar';
 import { BsTrashFill } from 'react-icons/bs';
-import Avatar from './Avatar';
-import CommentView from './CommentView';
-import CommentButtons from './CommentButtons';
+import { formatAgo } from '../../util/date';
+import { SubCommentType } from '../Comments/Comment';
 
-type CommentProps = {
-  comment: CommentType;
+type SubCommentPops = {
+  comment: SubCommentType;
   onDelete: (id: number) => void;
-  onLike: (id: number) => void;
 };
 
-export default function Comment({ comment, onDelete, onLike }: CommentProps) {
-  const { id, userId, text, createdAt, like } = comment;
+export default function SubComment({ comment, onDelete }: SubCommentPops) {
+  const { id, userId, text, createdAt } = comment;
   return (
     <li className='w-full flex mb-2'>
       <Avatar />
@@ -25,12 +24,9 @@ export default function Comment({ comment, onDelete, onLike }: CommentProps) {
             <BsTrashFill />
           </button>
         </div>
-        <CommentButtons
-          id={id}
-          createdAt={createdAt}
-          like={like}
-          onLike={onLike}
-        />
+        <span className='pl-3 text-xs text-gray-500'>
+          {formatAgo(createdAt)}
+        </span>
       </div>
     </li>
   );
