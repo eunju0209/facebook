@@ -1,6 +1,6 @@
 import CommentList from './components/Comments/CommentList';
-import Content from './components/Content';
-import Header from './components/Header';
+import Content from './components/ui/Content';
+import Header from './components/ui/Header';
 
 function App() {
   return (
