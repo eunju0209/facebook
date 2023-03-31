@@ -4,9 +4,10 @@ import { CommentType } from './CommentList';
 
 type AddCommentProps = {
   onAdd: (comment: CommentType) => void;
+  onScroll: () => void;
 };
 
-export default function AddComment({ onAdd }: AddCommentProps) {
+export default function AddComment({ onAdd, onScroll }: AddCommentProps) {
   const [text, setText] = useState('');
 
   const handleSubmit = (e: FormEvent) => {
@@ -24,6 +25,7 @@ export default function AddComment({ onAdd }: AddCommentProps) {
     };
     onAdd(newComment);
     setText('');
+    onScroll();
   };
 
   return (

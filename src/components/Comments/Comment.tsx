@@ -11,11 +11,17 @@ type CommentProps = {
   comment: CommentType;
   onDelete: (id: number) => void;
   onLike: (id: number) => void;
+  liRef: React.RefObject<HTMLLIElement>;
 };
 
 export type SubCommentType = CommentType & { commentId: number };
 
-export default function Comment({ comment, onDelete, onLike }: CommentProps) {
+export default function Comment({
+  comment,
+  onDelete,
+  onLike,
+  liRef,
+}: CommentProps) {
   const [subComments, setSubComments] = useState(
     readSubCommentsFromLocalStorage()
   );
@@ -37,7 +43,7 @@ export default function Comment({ comment, onDelete, onLike }: CommentProps) {
   }, [subComments]);
 
   return (
-    <li className='w-full flex mb-2'>
+    <li className='w-full flex mb-2' ref={liRef}>
       <Avatar />
       <div className='grow ml-2'>
         <div className='flex items-center'>

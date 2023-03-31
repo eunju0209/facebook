@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AddComment from './AddComment';
 import Comment from './Comment';
 
@@ -11,6 +11,7 @@ export type CommentType = {
 };
 
 export default function CommentList() {
+  const liRef = useRef<HTMLLIElement>(null);
   const [comments, setComments] = useState(readCommentsFromLocalStorage());
 
   const handleAdd = (comment: CommentType) =>
@@ -26,23 +27,28 @@ export default function CommentList() {
       )
     );
 
+  const handleScroll = () => {
+    liRef.current?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  };
+
   useEffect(() => {
     localStorage.setItem('comments', JSON.stringify(comments));
   }, [comments]);
 
   return (
-    <section className='grow overflow-y-scroll'>
-      <ul className='pt-2 px-4'>
+    <section className='grow flex flex-col overflow-hidden'>
+      <ul className='grow pt-2 px-4 overflow-y-scroll'>
         {comments.map((comment) => (
           <Comment
             key={comment.id}
             comment={comment}
             onDelete={handleDelete}
             onLike={handleLike}
+            liRef={liRef}
           />
         ))}
       </ul>
-      <AddComment onAdd={handleAdd} />
+      <AddComment onAdd={handleAdd} onScroll={handleScroll} />
     </section>
   );
 }
