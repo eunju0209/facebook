@@ -44,11 +44,7 @@ export default function Comment({ comment, onDelete, onLike }: CommentProps) {
           <CommentView userId={userId} text={text} />
           <button
             className='ml-2 text-gray-500 transition-all hover:text-red-500'
-            onClick={() => {
-              console.log(id);
-              setSubComments([]);
-              onDelete(id);
-            }}
+            onClick={() => onDelete(id)}
           >
             <BsTrashFill />
           </button>
