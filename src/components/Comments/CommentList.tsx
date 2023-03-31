@@ -11,6 +11,7 @@ export type CommentType = {
 };
 
 export default function CommentList() {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const liRef = useRef<HTMLLIElement>(null);
   const [comments, setComments] = useState(readCommentsFromLocalStorage());
 
@@ -28,27 +29,31 @@ export default function CommentList() {
     );
 
   const handleScroll = () => {
-    liRef.current?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    liRef.current?.scrollIntoView();
   };
 
   useEffect(() => {
     localStorage.setItem('comments', JSON.stringify(comments));
+    handleScroll();
   }, [comments]);
 
   return (
     <section className='grow flex flex-col overflow-hidden'>
-      <ul className='grow pt-2 px-4 overflow-y-scroll'>
-        {comments.map((comment) => (
-          <Comment
-            key={comment.id}
-            comment={comment}
-            onDelete={handleDelete}
-            onLike={handleLike}
-            liRef={liRef}
-          />
-        ))}
-      </ul>
-      <AddComment onAdd={handleAdd} onScroll={handleScroll} />
+      <div className='grow pt-2 px-4 overflow-y-scroll'>
+        <ul>
+          {comments.map((comment) => (
+            <Comment
+              key={comment.id}
+              comment={comment}
+              onDelete={handleDelete}
+              onLike={handleLike}
+              liRef={liRef}
+            />
+          ))}
+        </ul>
+        <div ref={scrollRef}></div>
+      </div>
+      <AddComment onAdd={handleAdd} />
     </section>
   );
 }

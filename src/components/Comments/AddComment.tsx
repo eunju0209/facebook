@@ -4,10 +4,9 @@ import { CommentType } from './CommentList';
 
 type AddCommentProps = {
   onAdd: (comment: CommentType) => void;
-  onScroll: () => void;
 };
 
-export default function AddComment({ onAdd, onScroll }: AddCommentProps) {
+export default function AddComment({ onAdd }: AddCommentProps) {
   const [text, setText] = useState('');
 
   const handleSubmit = (e: FormEvent) => {
@@ -25,11 +24,10 @@ export default function AddComment({ onAdd, onScroll }: AddCommentProps) {
     };
     onAdd(newComment);
     setText('');
-    onScroll();
   };
 
   return (
-    <div className='flex items-center py-2 px-4 sticky bottom-0 bg-white shadow-inner'>
+    <div className='flex items-center py-2 px-4 bg-white shadow-inner'>
       <Avatar />
       <form className='grow flex ml-2' onSubmit={handleSubmit}>
         <input

@@ -28,7 +28,7 @@ export default function Comment({
   const [isSub, setIsSub] = useState(false);
   const { id, userId, text, createdAt, like } = comment;
 
-  const handleSub = () => setIsSub(!isSub);
+  const handleSub = () => setIsSub((prev) => !prev);
 
   const handleSubAdd = (comment: SubCommentType) =>
     setSubComments((comments) => [...comments, comment]);
