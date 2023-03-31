@@ -11,7 +11,6 @@ export type CommentType = {
 };
 
 export default function CommentList() {
-  const scrollRef = useRef<HTMLDivElement>(null);
   const liRef = useRef<HTMLLIElement>(null);
   const [comments, setComments] = useState(readCommentsFromLocalStorage());
 
@@ -39,20 +38,17 @@ export default function CommentList() {
 
   return (
     <section className='grow flex flex-col overflow-hidden'>
-      <div className='grow pt-2 px-4 overflow-y-scroll'>
-        <ul>
-          {comments.map((comment) => (
-            <Comment
-              key={comment.id}
-              comment={comment}
-              onDelete={handleDelete}
-              onLike={handleLike}
-              liRef={liRef}
-            />
-          ))}
-        </ul>
-        <div ref={scrollRef}></div>
-      </div>
+      <ul className='grow pt-2 px-4 overflow-y-scroll'>
+        {comments.map((comment) => (
+          <Comment
+            key={comment.id}
+            comment={comment}
+            onDelete={handleDelete}
+            onLike={handleLike}
+            liRef={liRef}
+          />
+        ))}
+      </ul>
       <AddComment onAdd={handleAdd} />
     </section>
   );
