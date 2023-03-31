@@ -31,8 +31,8 @@ export default function CommentList() {
   }, [comments]);
 
   return (
-    <section className='px-4'>
-      <ul>
+    <section className='grow overflow-y-scroll'>
+      <ul className='pt-2 px-4'>
         {comments.map((comment) => (
           <Comment
             key={comment.id}

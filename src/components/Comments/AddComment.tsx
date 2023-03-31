@@ -27,7 +27,7 @@ export default function AddComment({ onAdd }: AddCommentProps) {
   };
 
   return (
-    <div className='flex items-center'>
+    <div className='flex items-center py-2 px-4 sticky bottom-0 bg-white shadow-inner'>
       <Avatar />
       <form className='grow flex ml-2' onSubmit={handleSubmit}>
         <input

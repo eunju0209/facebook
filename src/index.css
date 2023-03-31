@@ -9,9 +9,10 @@ body {
 }
 
 #root {
+  display: flex;
+  flex-direction: column;
   max-width: 500px;
   height: 100vh;
-  overflow-y: auto;
   margin: 0 auto;
   background-color: white;
   border-right: 1px solid #ececec;
